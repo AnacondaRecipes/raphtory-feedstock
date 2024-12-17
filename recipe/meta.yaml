@@ -1,45 +1,66 @@
-{% set name = "<PLEASE ADD PKG NAME>" %}
-{% set version = "<PLEASE ADD PKG VERSION>" %}
+{% set name = "raphtory" %}
+{% set version = "0.13.1" %}
 
 package:
   name: {{ name|lower }}
   version: {{ version }}
 
 source:
-  url: https://pypi.io/packages/source/{{ name[0] }}/{{ name }}/{{ name }}-{{ version }}.tar.gz
-  sha256: <sha256>
+  url: https://github.com/Pometry/Raphtory/archive/refs/tags/v{{ version }}.tar.gz
+  sha256: f99caa183387c68a3cdc0949c9000c23553cb3f33524989fa14170a3f522f69d
 
 build:
   number: 0
-  script: {{ PYTHON }} -m pip install . -vv --no-deps --no-build-isolation
+  script: {{ PYTHON }} -m pip install ./python -vv --no-deps --no-build-isolation
   skip: True  # [py<38]
 
 requirements:
   host:
     - python
     - pip
+    - maturin>=1.4.0
+    - rust
+    - cmake
+    - protobuf
   run:
     - python
+    - pyvis >=0.3.2
+    - networkx >=2.6.3
+    - pandas >=2.0.3
+    - pyarrow >=14.0.1,<16
+    - requests >=2.31.0
+    - gql-with-all ==3.5.0
+    - matplotlib-base >=3.4.3
+    - ipywidgets >=8.1.5
 
 test:
   imports:
-    - {{ name.replace('-', '.') }}
+    - raphtory
+    - raphtory.algorithms
+    - raphtory.graph_gen
+    - raphtory.graph_loader
+    - raphtory.graphql
+    - raphtory.vectors
   requires:
     - pip
   commands:
     - pip check
 
 about:
-  home: <PLEASE ADD HOME URL>
-  summary: <PLEASE ADD SUMMARY>
+  home: https://www.raphtory.com
+  summary: Raphtory is an in-memory graph tool written in Rust with friendly Python APIs on top
   description: |
-    <PLEASE ADD DESCRIPTION>
-  license: <PLEASE ADD LICENSE>
-  license_family: <PLEASE ADD LICENSE_FAMILY>
-  license_file: <PLEASE_ADD_LICENSE_FILE>
-  dev_url: <PLEASE ADD DEV URL>
-  doc_url: <PLEASE ADD DOC URL>
+    Raphtory is an in-memory graph tool written in Rust with friendly Python APIs on top. 
+    It is blazingly fast, scales to hundreds of millions of edges on your laptop, and can be dropped into your 
+    existing pipelines with a simple pip install raphtory.
+    It supports time traveling, multilayer modelling, and advanced analytics beyond simple querying like 
+    community evolution, dynamic scoring, and mining temporal motifs.
+  license: GPL-3.0
+  license_family: GPL3
+  license_file: LICENSE
+  dev_url: https://github.com/pometry/raphtory
+  doc_url: https://docs.raphtory.com
 
 extra:
   recipe-maintainers:
-    - Jrice1317
+    - msentissi
