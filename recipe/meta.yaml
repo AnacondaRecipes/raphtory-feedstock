@@ -17,12 +17,14 @@ build:
 
 requirements:
   build:
-    - {{ compiler("rust") }}
+    # C Compiler is needed on linux to get missing libgcc-ng as a run_export
+    - {{ compiler('c') }}     # [linux]
+    - {{ compiler('rust') }}
+    - cmake
   host:
     - python
     - pip
     - maturin >=1.4.0
-    - cmake
     - protobuf
   run:
     - python
