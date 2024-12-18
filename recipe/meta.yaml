@@ -17,13 +17,13 @@ build:
 
 requirements:
   build:
-    - cmake
-    - protobuf
     - {{ compiler("rust") }}
   host:
     - python
     - pip
     - maturin >=1.4.0
+    - cmake
+    - protobuf
   run:
     - python
     - pyvis >=0.3.2
