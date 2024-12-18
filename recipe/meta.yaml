@@ -15,13 +15,14 @@ build:
   skip: True  # [py<38]
 
 requirements:
+  build:
+    - cmake
+    - protobuf
+    - rust
   host:
     - python
     - pip
-    - maturin>=1.4.0
-    - rust
-    - cmake
-    - protobuf
+    - maturin >=1.4.0
   run:
     - python
     - pyvis >=0.3.2
