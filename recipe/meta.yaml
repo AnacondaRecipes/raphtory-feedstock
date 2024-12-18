@@ -12,7 +12,8 @@ source:
 build:
   number: 0
   script: {{ PYTHON }} -m pip install ./python -vv --no-deps --no-build-isolation
-  skip: True  # [py<38]
+  # gql-with-all not on s390x
+  skip: True  # [py<38 or s390x]
 
 requirements:
   build:
