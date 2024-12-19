@@ -24,8 +24,8 @@ requirements:
   host:
     - python
     - pip
-    - maturin >=1.4.0
     - protobuf
+    - maturin >=1.4.0
   run:
     - python
     - pyvis >=0.3.2
@@ -38,6 +38,8 @@ requirements:
     - ipywidgets >=8.1.5
 
 test:
+  source_files:
+    - python/tests
   imports:
     - raphtory
     - raphtory.algorithms
@@ -47,8 +49,11 @@ test:
     - raphtory.vectors
   requires:
     - pip
+    - pytest
   commands:
     - pip check
+    - cd python/tests
+    - pytest -v -k "not test_add_properties" --ignore="test_graphdb/test_disk_graph.py"
 
 about:
   home: https://www.raphtory.com
