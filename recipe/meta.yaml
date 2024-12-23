@@ -27,7 +27,7 @@ requirements:
   host:
     - python
     - pip
-    - protobuf
+    - protobuf 4.25.3
     - maturin >=1.4.0
   run:
     - python
