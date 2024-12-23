@@ -1,7 +1,5 @@
 {% set name = "raphtory" %}
 {% set version = "0.13.1" %}
-{% set tests_to_skip = "test_add_properties" %}
-{% set tests_to_skip = tests_to_skip + " or test_graph_file_time_stats" %} # [osx and x86_64]
 
 package:
   name: {{ name|lower }}
@@ -42,6 +40,9 @@ requirements:
     - matplotlib-base >=3.4.3
     - ipywidgets >=8.1.5
 
+
+{% set tests_to_skip = "test_add_properties" %}
+{% set tests_to_skip = tests_to_skip + " or test_graph_file_time_stats" %} # [osx and x86_64]
 test:
   source_files:
     - python/tests
