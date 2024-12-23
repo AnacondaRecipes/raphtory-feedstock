@@ -42,7 +42,7 @@ requirements:
 
 
 {% set tests_to_skip = "test_add_properties" %}
-{% set tests_to_skip = tests_to_skip + " or test_graph_file_time_stats" %} # [osx and x86_64]
+{% set tests_to_skip = tests_to_skip + " or test_graph_file_time_stats" %} # [osx]
 test:
   source_files:
     - python/tests
